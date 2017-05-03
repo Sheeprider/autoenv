@@ -63,6 +63,13 @@ ${_orderedfiles}"
 	if [ -z "${zsh_shwordsplit}" ]; then
 		\unsetopt shwordsplit >/dev/null 2>&1
 	fi
+
+	# Deactivate when leaving folder
+	_num_files=${#_files[@]}  # No .env files
+	if \which deactivate 2>/dev/null >&2 && (( _num_files == 0 )); then
+		\deactivate
+	fi
+
 }
 
 autoenv_hashline() {
